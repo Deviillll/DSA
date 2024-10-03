@@ -63,6 +63,12 @@ void postOrder(Node *root)
     cout << root->data << " ";
 }
 
+// count nodes in binary tree
+int countNodes(Node *root)
+{
+    return root ? 1 + countNodes(root->left) + countNodes(root->right) : 0;
+}
+
 int main()
 {
 
@@ -78,5 +84,8 @@ int main()
     cout << "Post-order Traversal: ";
     postOrder(root);
     cout << endl;
+    int totalNodes = countNodes(root);
+    cout << "Total number of nodes: " << totalNodes << endl;
+
     return 0;
 }
