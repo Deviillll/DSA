@@ -29,10 +29,54 @@ Node *binaryTree()
     root->right = binaryTree();
     return root;
 }
+// in order traversal
+void inOrder(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    inOrder(root->left);
+    cout << root->data << " ";
+    inOrder(root->right);
+}
+// pre order traversal
+void preOrder(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    cout << root->data << " ";
+    preOrder(root->left);
+    preOrder(root->right);
+}
+// post order traversal
+void postOrder(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    postOrder(root->left);
+    postOrder(root->right);
+    cout << root->data << " ";
+}
 
 int main()
 {
 
     Node *root = binaryTree();
+    cout << "In-order Traversal: ";
+    inOrder(root);
+    cout << endl;
+
+    cout << "Pre-order Traversal: ";
+    preOrder(root);
+    cout << endl;
+
+    cout << "Post-order Traversal: ";
+    postOrder(root);
+    cout << endl;
     return 0;
 }
