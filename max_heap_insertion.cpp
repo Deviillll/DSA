@@ -26,6 +26,38 @@ public:
             i = (i - 1) / 2;
         }
     }
+    // delete from heap
+    void deleteMax()
+    {
+        if (size <= 0)
+            return; // If heap is empty, do nothing
+
+        arr[0] = arr[--size]; // Move the last element to the root and decrease size
+        heapify(0);           // Restore the heap property
+    }
+
+    void heapify(int i)
+    {
+        int largest = i;       // Initialize largest as root
+        int left = 2 * i + 1;  // left child
+        int right = 2 * i + 2; // right child
+
+        // If left child is larger than root
+        if (left < size && arr[left] > arr[largest])
+            largest = left;
+
+        // If right child is larger than largest so far
+        if (right < size && arr[right] > arr[largest])
+            largest = right;
+
+        // If largest is not root
+        if (largest != i)
+        {
+            swap(arr[i], arr[largest]); // Swap root with largest
+            heapify(largest);           // Recursively heapify the affected sub-tree
+        }
+    }
+
     void print()
     {
         for (int i = 0; i < size; i++)
@@ -33,7 +65,6 @@ public:
         cout << endl;
     }
 };
-// insert into heap
 
 int main()
 {
@@ -44,6 +75,8 @@ int main()
     h.insert(40);
     h.insert(50);
     h.insert(100);
+    h.print();
+    h.deleteMax();
     h.print();
 
     return 0;
